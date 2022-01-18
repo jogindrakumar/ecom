@@ -18,7 +18,8 @@
         <div class="row">
         <div class="col"> 
             {{-- {{route('admin.profile.update')}} --}}
-    <form action="" >
+    <form action="{{route('admin.profile.store')}}" method="POST" enctype="multipart/form-data">
+        @csrf
         <div class="row">
         <div class="col-12">	
             
