@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Frontend\IndexController;
 use App\Models\Admin;
 
 /*
@@ -16,9 +17,9 @@ use App\Models\Admin;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -44,7 +45,9 @@ Route::group(['prefix' => 'admin', 'middleware'=>['admin:admin']],function(){
 
 
 
+// user home routes
 
+Route::get('/',[IndexController::class,'Index']);
 
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('admin.index');
