@@ -39,6 +39,8 @@ Route::group(['prefix' => 'admin', 'middleware'=>['admin:admin']],function(){
  Route::get('/admin/profile',[AdminProfileController::class,'AdminProfile'])->name('admin.profile');
  Route::get('/admin/profile/edit',[AdminProfileController::class,'AdminProfileEdit'])->name('admin.profile.edit');
  Route::post('/admin/profile/store',[AdminProfileController::class,'AdminProfileStore'])->name('admin.profile.store');
+ Route::get('/admin/change/password',[AdminProfileController::class,'AdminChangePassword'])->name('admin.change.password');
+ Route::post('/admin/update/password',[AdminProfileController::class,'AdminUpdatePassword'])->name('update.change.password');
 
 
 
