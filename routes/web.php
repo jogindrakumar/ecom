@@ -5,6 +5,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\Admin;
+use App\Models\User;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +23,9 @@ use App\Models\Admin;
 //     return view('welcome');
 // });
 
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
+    return view('admin.index');
 })->name('dashboard');
-
 
 //admin route
 Route::group(['prefix' => 'admin', 'middleware'=>['admin:admin']],function(){
@@ -45,10 +46,19 @@ Route::group(['prefix' => 'admin', 'middleware'=>['admin:admin']],function(){
 
 
 
+
+
+ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+       $id = Auth::user()->id;
+        $user = User::find($id);
+    return view('dashboard',compact('user'));
+})->name('dashboard');
+
 // user home routes
 
 Route::get('/',[IndexController::class,'Index']);
+Route::get('/user/logout',[IndexController::class,'UserLogout'])->name('user.logout');
+Route::get('/user/profile',[IndexController::class,'UserProfile'])->name('user.profile');
+Route::post('/user/profile/store',[IndexController::class,'UserProfileStore'])->name('user.profile.store');
 
-Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
-    return view('admin.index');
-})->name('dashboard');
+
