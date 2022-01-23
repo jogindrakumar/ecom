@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Hash;
 class IndexController extends Controller
 {
     //
@@ -50,7 +50,37 @@ class IndexController extends Controller
             'message' => 'User Profile Updated Successfully',
             'alert-type' => 'success'
                 );
-        return redirect()->route('/dashboard')->with($notification);
+        return redirect()->route('dashboard')->with($notification);
+
+
+    }
+
+
+    public function UserChangePassword(){
+         $user =  User::find(Auth::user()->id);
+    return view('frontend.profile.user_change_password',compact('user'));
+    }
+
+     
+    public function UserUpdatePassword(Request $request){
+        $validateData = $request->validate([
+            'oldpassword' => 'required',
+             'password' => 'required|confirmed',
+
+        ]);
+        $hashPassword = Auth::user()->password;
+        if(Hash::check($request->oldpassword,$hashPassword)){
+            $user =  User::find(Auth::id());
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Auth::logout();
+
+            return redirect()->route('user.logout');
+        }else{
+            return redirect()->back();
+        }
+        
+
 
 
     }
