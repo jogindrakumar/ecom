@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\Admin;
+use App\Models\Brand;
 use App\Models\User;
 
 
@@ -44,6 +46,12 @@ Route::group(['prefix' => 'admin', 'middleware'=>['admin:admin']],function(){
  Route::get('/admin/change/password',[AdminProfileController::class,'AdminChangePassword'])->name('admin.change.password');
  Route::post('/admin/update/password',[AdminProfileController::class,'AdminUpdatePassword'])->name('update.change.password');
 
+ // Admin Brand All Routes
+
+ Route::prefix('brand')->group(function(){
+Route::get('/view',[BrandController::class,'BrandView'])->name('all.brand');
+ });
+
 
 
 
@@ -62,5 +70,8 @@ Route::get('/user/profile',[IndexController::class,'UserProfile'])->name('user.p
 Route::post('/user/profile/store',[IndexController::class,'UserProfileStore'])->name('user.profile.store');
 Route::get('/user/change/password',[IndexController::class,'UserChangePassword'])->name('user.change.password');
 Route::post('/user/update/password',[IndexController::class,'UserUpdatePassword'])->name('user.update.password');
+
+
+
 
 
