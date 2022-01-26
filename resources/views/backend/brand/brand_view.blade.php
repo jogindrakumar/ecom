@@ -34,14 +34,14 @@
                             @foreach ($brands as $item)
                                 
                           
-        <tr>
-            <td>{{$item->brand_name_en}}</td>
-            <td>{{$item->brand_name_hin}}</td>
-            <td><img src="{{asset($item->brand_image)}}" alt="" style="width:70px; height:40px;"></td>
-            <td>
-                <a href="{{route('brand.edit',$item->id)}}" class="btn btn-warning">Edit</a>
-                <a href="" class="btn btn-danger">Delete</a>
-            </td>
+<tr>
+	<td>{{$item->brand_name_en}}</td>
+	<td>{{$item->brand_name_hin}}</td>
+	<td><img src="{{asset($item->brand_image)}}" alt="" style="width:70px; height:40px;"></td>
+<td>
+<a href="{{route('brand.edit',$item->id)}}" class="btn btn-warning" title="Edit Data"><i class="fa fa-edit"></i></a>
+<a href="{{route('brand.delete',$item->id)}}" class="btn btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i></a>
+</td>
             
         </tr>
           @endforeach
