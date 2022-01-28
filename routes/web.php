@@ -11,6 +11,7 @@ use App\Models\Admin;
 use App\Models\Brand;
 use App\Models\User;
 use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use App\Models\Category;
 
 
@@ -84,6 +85,7 @@ Route::get('/delete/{id}',[BrandController::class,'BrandDelete'])->name('brand.d
 // Sub-Sub-category of all Category
 
     Route::get('/sub/sub/view',[SubCategoryController::class,'SubSubCategoryView'])->name('all.subsubcategory');
+    Route::get('/subcategory/ajax/{category_id}',[SubCategoryController::class,'GetSubCategory']);
     Route::post('/sub/sub/store',[SubCategoryController::class,'SubSubCategoryStore'])->name('subsubcategory.store');
     Route::get('/sub/sub/edit/{id}',[SubCategoryController::class,'SubSubCategoryEdit'])->name('subsubcategory.edit');
     Route::post('/sub/sub/update',[SubCategoryController::class,'SubSubCategoryUpdate'])->name('subsubcategory.update');
