@@ -23,7 +23,7 @@
 					  <table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-                                <th>Icon</th>
+                                <th>Category</th>
 								<th>subcategory En</th>
 								<th>subcategory Hin</th>
 								<th>Action</th>
@@ -35,7 +35,7 @@
                                 
                           
 <tr>
-    <td><span><i class="{{$item->subcategory_id}}"></i></span></td>
+    <td>{{$item['category']['category_name_en']}}</td>
 	<td>{{$item->subcategory_name_en}}</td>
 	<td>{{$item->subcategory_name_hin}}</td>
 	
@@ -74,15 +74,16 @@
        <div class="form-group">
             <h5>Category Select <span class="text-danger">*</span></h5>
             <div class="controls">
-                <select name="select" id="select" required="" class="form-control">
-                    <option value="">Select Your City</option>
-                    <option value="1">India</option>
-                    <option value="2">USA</option>
-                    <option value="3">UK</option>
-                    <option value="4">Canada</option>
-                    <option value="5">Dubai</option>
+                <select name="category_id"  required="" class="form-control">
+                    <option  selected="" disabled="" value="">Select Category</option>
+					@foreach ($categories as $category)
+						
+                    <option value="{{$category->id}}">{{$category->category_name_en}}</option>
+                 @endforeach
                 </select>
-           
+           @error('category_id')
+		<span class="text-danger">{{$message}}</span>
+		@enderror
         </div>
 
     </div>
