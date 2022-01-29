@@ -55,6 +55,7 @@ class SubCategoryController extends Controller
         $subcategory_id = $request->id;
           SubCategory::FindOrFail($subcategory_id)->update([
                          'category_id' => $request->category_id,
+                        'subcategory_name_en' => $request->subcategory_name_en,
                         'subcategory_name_hin' => $request->subcategory_name_hin,
                         'subcategory_slug_en' => strtolower(str_replace(' ','-',$request->subcategory_name_en)),
                         'subcategory_slug_hin' => strtolower(str_replace(' ','-',$request->subcategory_name_hin)),
@@ -125,6 +126,50 @@ class SubCategoryController extends Controller
         return redirect()->back()->with($notification);
     }
 
+       public function SubSubCategoryEdit($id){
+           $categories = Category::orderBy('category_name_en','ASC')->get();
+           $subcategories = SubCategory::orderBy('subcategory_name_en','ASC')->get();
+
+        // $Categorys = Category::find($id);
+        $subsubcategory = SubSubCategory::findOrFail($id);
+        return view('backend.category.sub_subcategory_edit',compact('categories','subcategories','subsubcategory'));
+
+    }
+
+     public function SubSubCategoryUpdate(Request $request){
+
+        $subsubcategory_id = $request->id;
+          SubSubCategory::FindOrFail($subsubcategory_id)->update([
+                         'category_id' => $request->category_id,
+                         'subcategory_id' => $request->subcategory_id,
+                        'subsubcategory_name_en' => $request->subsubcategory_name_en,
+                        'subsubcategory_name_hin' => $request->subsubcategory_name_hin,
+                        'subsubcategory_slug_en' => strtolower(str_replace(' ','-',$request->subsubcategory_name_en)),
+                        'subsubcategory_slug_hin' => strtolower(str_replace(' ','-',$request->subsubcategory_name_hin)),
+                        
+                        
+                    ]);
+                    $notification = array(
+                        'message' => 'Sub -SubCategory Updated Successfully',
+                        'alert-type' => 'success'
+                            );
+                    return redirect()->route('all.subsubcategory')->with($notification);
+
+        
+
+    }
+
+
+                    public function SubSubCategoryDelete($id){
+
+                        SubSubCategory::FindOrFail($id)->delete();
+
+                            $notification = array(
+                                            'message' => 'Sub --subCategory Delete Successfully',
+                                            'alert-type' => 'success'
+                                                );
+                                        return redirect()->back()->with($notification);
+                        }
 
 
 }
