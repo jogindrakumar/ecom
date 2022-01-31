@@ -22,4 +22,7 @@ class ProductController extends Controller
         $brands = Brand::latest()->get();
         return view('backend.product.product_add',compact('categories','brands','subcategories','subsubcategories'));
     }
+
+
+    
 }
