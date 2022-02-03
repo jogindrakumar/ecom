@@ -103,7 +103,8 @@ Route::get('/delete/{id}',[BrandController::class,'BrandDelete'])->name('brand.d
 Route::get('/add',[ProductController::class,'AddProduct'])->name('add-product');
 Route::post('/store',[ProductController::class,'StoreProduct'])->name('product-store');
 Route::get('/manage', [ProductController::class, 'ManageProduct'])->name('manage-product');
-Route::get('/edit', [ProductController::class, 'ProductEdit'])->name('product.edit');
+Route::get('/edit/{id}', [ProductController::class, 'ProductEdit'])->name('product.edit');
+Route::post('/data/update', [ProductController::class, 'ProductDataUpdate'])->name('product-update');
 Route::get('/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
 
 
