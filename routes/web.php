@@ -102,6 +102,9 @@ Route::get('/delete/{id}',[BrandController::class,'BrandDelete'])->name('brand.d
  Route::prefix('product')->group(function(){
 Route::get('/add',[ProductController::class,'AddProduct'])->name('add-product');
 Route::post('/store',[ProductController::class,'StoreProduct'])->name('product-store');
+Route::get('/manage', [ProductController::class, 'ManageProduct'])->name('manage-product');
+Route::get('/edit', [ProductController::class, 'ProductEdit'])->name('product.edit');
+Route::get('/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
 
 
 
