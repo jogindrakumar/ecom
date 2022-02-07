@@ -8,14 +8,50 @@
       <div class="header-top-inner">
         <div class="cnt-account">
           <ul class="list-unstyled">
-            <li><a href="#"><i class="icon fa fa-user"></i>My Account</a></li>
-            <li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
-            <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
-            <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
+            <li><a href="#"><i class="icon fa fa-user"></i>
+               @if (session()->get('language') == 'hindi') मेरी प्रोफाइल
+
+              @else My Account 
+                
+              @endif
+            </a></li>
+            <li><a href="#"><i class="icon fa fa-heart"></i>
+              @if (session()->get('language') == 'hindi') इच्छा-सूची
+
+              @else Wishlist
+                
+              @endif
+              </a></li>
+            <li><a href="#"><i class="icon fa fa-shopping-cart"></i>
+              @if (session()->get('language') == 'hindi') कार्ट
+
+              @else My Cart
+                
+              @endif
+              </a></li>
+            <li><a href="#"><i class="icon fa fa-check"></i>
+               @if (session()->get('language') == 'hindi') चेक आउट
+
+              @else Checkout
+                
+              @endif
+              </a></li>
             @auth
-                <li><a href="{{route('login')}}"><i class="icon fa fa-user"></i>User Profile</a></li>
+                <li><a href="{{route('login')}}"><i class="icon fa fa-user"></i>
+                   @if (session()->get('language') == 'hindi') आपकी प्रोफ़ाइल
+
+              @else User Profile
+                
+              @endif
+                  </a></li>
                 @else
-                 <li><a href="{{route('login')}}"><i class="icon fa fa-lock"></i>Login/Register</a></li>
+                 <li><a href="{{route('login')}}"><i class="icon fa fa-lock"></i>
+                  @if (session()->get('language') == 'hindi') लॉग इन करें / पंजी करें
+
+              @else Login/Register
+                
+              @endif
+                  </a></li>
             @endauth
           
           </ul>
@@ -31,11 +67,22 @@
                 <li><a href="#">GBP</a></li>
               </ul>
             </li>
-            <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">English </span><b class="caret"></b></a>
+            <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+              <span class="value">
+              @if (session()->get('language') == 'hindi')  हिंदी
+
+              @else English 
+                
+              @endif
+              </span><b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">English</a></li>
-                <li><a href="#">French</a></li>
-                <li><a href="#">German</a></li>
+                @if (session()->get('language') == 'hindi')
+                  
+               
+                <li><a href="{{route('english.language')}}">English</a></li>
+                @else
+                <li><a href="{{route('hindi.language')}}">हिन्दी </a></li>
+                 @endif
               </ul>
             </li>
           </ul>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SliderController;
@@ -123,6 +124,11 @@ Route::get('/slider/active/{id}', [SliderController::class, 'SliderActive'])->na
 
  });
 
+
+ // frontend Hindi English route Multi language all routes
+
+Route::get('/language/english', [LanguageController::class, 'English'])->name('english.language');
+Route::get('/language/hindi', [LanguageController::class, 'Hindi'])->name('hindi.language');
 
 
  Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
