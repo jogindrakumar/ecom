@@ -36,7 +36,7 @@ use App\Models\Slider;
 
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('admin.index');
-})->name('dashboard');
+})->name('dashboard')->middleware('auth:admin');
 
 //admin route
 Route::group(['prefix' => 'admin', 'middleware'=>['admin:admin']],function(){
@@ -48,7 +48,7 @@ Route::group(['prefix' => 'admin', 'middleware'=>['admin:admin']],function(){
 
 //Admin All routes
  Route::middleware(['auth:admin'])->group(function () {
-     
+
  Route::get('/admin/logout',[AdminController::class,'destroy'])->name('admin.logout');
  Route::get('/admin/profile',[AdminProfileController::class,'AdminProfile'])->name('admin.profile');
  Route::get('/admin/profile/edit',[AdminProfileController::class,'AdminProfileEdit'])->name('admin.profile.edit');
@@ -118,7 +118,6 @@ Route::get('/slider/edit/{id}',[SliderController::class,'SliderEdit'])->name('sl
 Route::post('/slider/update',[SliderController::class,'SliderUpdate'])->name('slider.update');
 Route::get('/slider/delete/{id}',[SliderController::class,'SliderDelete'])->name('slider.delete');
 Route::get('/slider/inactive/{id}', [SliderController::class, 'SliderInactive'])->name('slider.inactive');
-
 Route::get('/slider/active/{id}', [SliderController::class, 'SliderActive'])->name('slider.active');
 
 
