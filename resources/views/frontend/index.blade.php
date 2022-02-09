@@ -21,19 +21,34 @@
                 <ul class="dropdown-menu mega-menu">
                   <li class="yamm-content">
                     <div class="row">
+
+
+  @php
+  $subcategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('subcategory_name_en','ASC')->get();
+  @endphp
+
+    @foreach($subcategories as $subcategory)
                       <div class="col-sm-12 col-md-3">
-                        <ul class="links list-unstyled">
-                          <li><a href="#">Dresses</a></li>
-                          <li><a href="#">Shoes </a></li>
-                          <li><a href="#">Jackets</a></li>
-                          <li><a href="#">Sunglasses</a></li>
-                          <li><a href="#">Sport Wear</a></li>
-                          <li><a href="#">Blazers</a></li>
-                          <li><a href="#">Shirts</a></li>
-                          <li><a href="#">Shorts</a></li>
+                      
+                          <h2 class="title">
+@if(session()->get('language') == 'hindi') {{ $subcategory->subcategory_name_hin }} @else {{ $subcategory->subcategory_name_en }} @endif
+                </h2>
+                        
+  @php
+  $subsubcategories = App\Models\SubSubCategory::where('subcategory_id',$subcategory->id)->orderBy('subsubcategory_name_en','ASC')->get();
+  @endphp               
+  @foreach($subsubcategories as $subsubcategory)  
+  <ul class="links list-unstyled">          
+  <li><a href="#">@if(session()->get('language') == 'hindi') {{ $subsubcategory->subsubcategory_name_hin }} @else {{ $subsubcategory->subsubcategory_name_en }} @endif</a></li>
+                          
                         </ul>
+
+                       @endforeach 
+                       <!-- /end Subsubcategory foreach -->
                       </div>
-                      <!-- /.col -->
+
+                       @endforeach
+                      <!-- /end subcategory foreach -->
                     
                       <!-- /.col -->
                     
@@ -946,32 +961,24 @@
   
        <div id="hero">
           <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
-            <div class="item" style="background-image: url({{asset('frontend/assets/images/sliders/01.jpg')}});">
-              <div class="container-fluid">
-                <div class="caption bg-color vertical-center text-left">
-                  <div class="slider-header fadeInDown-1">Top Brands</div>
-                  <div class="big-text fadeInDown-1"> New Collections </div>
-                  <div class="excerpt fadeInDown-2 hidden-xs"> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span> </div>
-                  <div class="button-holder fadeInDown-3"> <a href="index.php?page=single-product" class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop Now</a> </div>
-                </div>
-                <!-- /.caption --> 
-              </div>
-              <!-- /.container-fluid --> 
-            </div>
+    @foreach($sliders as $slider)
+    <div class="item" style="background-image: url({{asset($slider->slider_img)}});">
+      <div class="container-fluid">
+        <div class="caption bg-color vertical-center text-left">
+          <div class="slider-header fadeInDown-1">{{$slider->title}}</div>
+          <div class="big-text fadeInDown-1"> </div>
+          <div class="excerpt fadeInDown-2 hidden-xs"> <span>{{$slider->description}}</span> </div>
+          <div class="button-holder fadeInDown-3"> <a href="index.php?page=single-product" class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop Now</a> </div>
+        </div>
+        <!-- /.caption --> 
+      </div>
+      <!-- /.container-fluid --> 
+    </div>
+    @endforeach
+            <!-- /.endforeach -->
             <!-- /.item -->
             
-            <div class="item" style="background-image: url({{asset('frontend/assets/images/sliders/02.jpg')}});">
-              <div class="container-fluid">
-                <div class="caption bg-color vertical-center text-left">
-                  <div class="slider-header fadeInDown-1">Spring 2016</div>
-                  <div class="big-text fadeInDown-1"> Women <span class="highlight">Fashion</span> </div>
-                  <div class="excerpt fadeInDown-2 hidden-xs"> <span>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit</span> </div>
-                  <div class="button-holder fadeInDown-3"> <a href="index.php?page=single-product" class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop Now</a> </div>
-                </div>
-                <!-- /.caption --> 
-              </div>
-              <!-- /.container-fluid --> 
-            </div>
+            
             <!-- /.item --> 
             
           </div>
