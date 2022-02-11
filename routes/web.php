@@ -130,6 +130,10 @@ Route::get('/slider/active/{id}', [SliderController::class, 'SliderActive'])->na
 Route::get('/language/english', [LanguageController::class, 'English'])->name('english.language');
 Route::get('/language/hindi', [LanguageController::class, 'Hindi'])->name('hindi.language');
 
+// Product details Routes
+
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+
 
  Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
        $id = Auth::user()->id;
