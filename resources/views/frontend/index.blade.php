@@ -1042,7 +1042,11 @@
               <li class="active"><a data-transition-type="backSlide" href="#all" data-toggle="tab">All</a></li>
             @foreach ($categories as $category )
   
-              <li><a data-transition-type="backSlide" href="#category{{$category->id}}" data-toggle="tab">{{$category->category_name_en}}</a></li>
+              <li><a data-transition-type="backSlide" href="#category{{$category->id}}" data-toggle="tab">
+                
+                @if(session()->get('language') == 'hindi') {{$category->category_name_hin}} @else {{$category->category_name_en}} @endif 
+                
+               </a></li>
               @endforeach
               {{-- <li><a data-transition-type="backSlide" href="#laptop" data-toggle="tab">Electronics</a></li>
               <li><a data-transition-type="backSlide" href="#apple" data-toggle="tab">Shoes</a></li> --}}
@@ -1061,7 +1065,20 @@
                           <div class="image"> <a href="detail.html"><img  src="{{asset($product->product_thumbnail)}}" alt=""></a> </div>
                           <!-- /.image -->
                           
-                          <div class="tag new"><span>new</span></div>
+
+                          @php
+                            $amount = $product->selling_price - $product->discount_price;
+                            $discount = ($amount/$product->selling_price) * 100;
+                          @endphp
+
+                          <div>
+                            @if ($product->discount_price == NULL)
+                                <div class="tag new"><span>new</span></div>
+                                @else
+                                  <div class="tag hot"><span>{{round($discount)}} %</span></div>
+                            @endif
+                          </div>
+                          
                         </div>
                         <!-- /.product-image -->
                         
@@ -1071,7 +1088,14 @@
                             </a></h3>
                           <div class="rating rateit-small"></div>
                           <div class="description"></div>
-                          <div class="product-price"> <span class="price"> ₹{{$product->discount_price}}</span> <span class="price-before-discount">₹{{$product->selling_price}}</span> </div>
+
+                           @if ($product->discount_price == NULL)
+                           <div class="product-price"> <span class="price"> ₹{{$product->selling_price}}</span> </div>
+
+                           @else
+                             <div class="product-price"> <span class="price"> ₹{{$product->discount_price}}</span> <span class="price-before-discount">₹{{$product->selling_price}}</span> </div>
+                           @endif
+                          
                           <!-- /.product-price --> 
                           
                         </div>
@@ -1120,14 +1144,27 @@
                     $catwiseProduct = App\Models\Product::where('category_id',$category->id)->orderBy('id','DESC')->get();
                   @endphp
                     @forelse ($catwiseProduct  as $product )
-                  <div class="item item-carousel">
+                 <div class="item item-carousel">
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
                           <div class="image"> <a href="detail.html"><img  src="{{asset($product->product_thumbnail)}}" alt=""></a> </div>
                           <!-- /.image -->
                           
-                          <div class="tag new"><span>new</span></div>
+
+                          @php
+                            $amount = $product->selling_price - $product->discount_price;
+                            $discount = ($amount/$product->selling_price) * 100;
+                          @endphp
+
+                          <div>
+                            @if ($product->discount_price == NULL)
+                                <div class="tag new"><span>new</span></div>
+                                @else
+                                  <div class="tag hot"><span>{{round($discount)}} %</span></div>
+                            @endif
+                          </div>
+                          
                         </div>
                         <!-- /.product-image -->
                         
@@ -1137,7 +1174,14 @@
                             </a></h3>
                           <div class="rating rateit-small"></div>
                           <div class="description"></div>
-                          <div class="product-price"> <span class="price"> ₹{{$product->discount_price}}</span> <span class="price-before-discount">₹{{$product->selling_price}}</span> </div>
+
+                           @if ($product->discount_price == NULL)
+                           <div class="product-price"> <span class="price"> ₹{{$product->selling_price}}</span> </div>
+
+                           @else
+                             <div class="product-price"> <span class="price"> ₹{{$product->discount_price}}</span> <span class="price-before-discount">₹{{$product->selling_price}}</span> </div>
+                           @endif
+                          
                           <!-- /.product-price --> 
                           
                         </div>
@@ -1163,7 +1207,9 @@
                     <!-- /.products --> 
                   </div>
                   @empty
-                  <h5 class="text-danger">No Product Found</h5>
+                  <h5 class="text-danger">
+                    @if(session()->get('language') == 'hindi') इस श्रेणी का कोई सामान उप्लब्द नही है !! @else sorry !! No items found @endif 
+                    </h5>
                   @endforelse
                   <!-- /.item end foreach all product option-->
                   
