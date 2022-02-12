@@ -2,6 +2,10 @@
 @extends('frontend.master_home')
 @section('main_content')
 
+@section('title')
+Quick Mart
+@endsection
+
 
 <div class="body-content outer-top-xs" id="top-banner-and-menu">
   <div class="container">
