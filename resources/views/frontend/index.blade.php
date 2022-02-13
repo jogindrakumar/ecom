@@ -284,7 +284,8 @@ Quick Mart
                       <div class="row product-micro-row">
                         <div class="col col-xs-5">
                           <div class="product-image">
-                            <div class="image"> <a href="#"> <img src="{{asset($product->product_thumbnail)}}" alt=""> </a> </div>
+                            <div class="image"> <a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"> 
+                              <img src="{{asset($product->product_thumbnail)}}" alt=""> </a> </div>
                             <!-- /.image --> 
                             
                           </div>
@@ -348,7 +349,8 @@ Quick Mart
                       <div class="row product-micro-row">
                         <div class="col col-xs-5">
                           <div class="product-image">
-                            <div class="image"> <a href="#">  <img src="{{asset($product->product_thumbnail)}}"  alt=""> </a> </div>
+                            <div class="image"> <a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}">
+                                <img src="{{asset($product->product_thumbnail)}}"  alt=""> </a> </div>
                             <!-- /.image --> 
                             
                           </div>
