@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Product;
 use App\Models\MultiImg;
+use App\Models\Brand;
 use Illuminate\Support\Facades\Hash;
 class IndexController extends Controller
 {
@@ -20,10 +21,18 @@ class IndexController extends Controller
         $products = Product::where('status',1)->orderBy('id','DESC')->get();
         $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         $featured = Product::where('featured',1)->orderBy('id','DESC')->limit(6)->get();
-        $hotdeals = Product::where('hot_deal',1)->orderBy('id','DESC')->limit(3)->get();
-        $specialoffers = Product::where('special_offer',1)->orderBy('id','DESC')->limit(3)->get();
-        $special_deals = Product::where('special_deals',1)->orderBy('id','DESC')->limit(3)->get();
-       return view('frontend.index',compact('categories','sliders','products','featured','hotdeals','specialoffers','special_deals'));
+        $hotdeals = Product::where('hot_deal',1)->where('discount_price','!=',NULL)->orderBy('id','DESC')->limit(3)->get();
+        $specialoffers = Product::where('special_offer',1)->orderBy('id','DESC')->limit(6)->get();
+        $special_deals = Product::where('special_deals',1)->orderBy('id','DESC')->limit(6)->get();
+        $skip_category_0 = Category::skip(0)->first();
+    	$skip_product_0 = Product::where('status',1)->where('category_id',$skip_category_0->id)->orderBy('id','DESC')->get();
+         $skip_category_1 = Category::skip(1)->first();
+    	$skip_product_1 = Product::where('status',1)->where('category_id',$skip_category_1->id)->orderBy('id','DESC')->get();
+        $skip_brand_1 = Brand::skip(1)->first();
+    	$skip_brand_product_1 = Product::where('status',1)->where('brand_id',$skip_brand_1->id)->orderBy('id','DESC')->get();
+
+       return view('frontend.index',compact('categories','sliders','products','featured','hotdeals','specialoffers',
+       'special_deals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','skip_brand_1','skip_brand_product_1'));
     }
 
     // user logout 
