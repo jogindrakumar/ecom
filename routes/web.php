@@ -134,6 +134,10 @@ Route::get('/language/hindi', [LanguageController::class, 'Hindi'])->name('hindi
 
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
+// frontend Product Tags Pages
+
+Route::get('/product/tag/{tag}', [IndexController::class, 'TagWishProduct']);
+
 
  Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
        $id = Auth::user()->id;
