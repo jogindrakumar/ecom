@@ -40,112 +40,33 @@ Tag Wish Product
               </div>
               <div class="sidebar-widget-body">
                 <div class="accordion">
+                    @foreach($categories as $category)
                   <div class="accordion-group">
-                    <div class="accordion-heading"> <a href="#collapseOne" data-toggle="collapse" class="accordion-toggle collapsed"> Camera </a> </div>
+                   <div class="accordion-heading"> <a href="#collapse{{ $category->id }}" data-toggle="collapse" class="accordion-toggle collapsed"> 
+		@if(session()->get('language') == 'hindi') {{ $category->category_name_hin }} @else {{ $category->category_name_en }} @endif </a> </div>
                     <!-- /.accordion-heading -->
-                    <div class="accordion-body collapse" id="collapseOne" style="height: 0px;">
+                   	<div class="accordion-body collapse" id="collapse{{ $category->id }}" style="height: 0px;">
                       <div class="accordion-inner">
+    @php
+  $subcategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('subcategory_name_en','ASC')->get();
+  @endphp 
+ @foreach($subcategories as $subcategory)
                         <ul>
-                          <li><a href="#">gaming</a></li>
-                          <li><a href="#">office</a></li>
-                          <li><a href="#">kids</a></li>
-                          <li><a href="#">for women</a></li>
+@if(session()->get('language') == 'hindi') {{ $subcategory->subcategory_name_hin }} @else {{ $subcategory->subcategory_name_en }} @endif</a></li>
                         </ul>
+                        	@endforeach 
+
+                            {{-- end sub category --}}
                       </div>
                       <!-- /.accordion-inner --> 
                     </div>
                     <!-- /.accordion-body --> 
                   </div>
+
+                  @endforeach
                   <!-- /.accordion-group -->
                   
-                  <div class="accordion-group">
-                    <div class="accordion-heading"> <a href="#collapseTwo" data-toggle="collapse" class="accordion-toggle collapsed"> Desktops </a> </div>
-                    <!-- /.accordion-heading -->
-                    <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
-                      <div class="accordion-inner">
-                        <ul>
-                          <li><a href="#">gaming</a></li>
-                          <li><a href="#">office</a></li>
-                          <li><a href="#">kids</a></li>
-                          <li><a href="#">for women</a></li>
-                        </ul>
-                      </div>
-                      <!-- /.accordion-inner --> 
-                    </div>
-                    <!-- /.accordion-body --> 
-                  </div>
-                  <!-- /.accordion-group -->
                   
-                  <div class="accordion-group">
-                    <div class="accordion-heading"> <a href="#collapseThree" data-toggle="collapse" class="accordion-toggle collapsed"> Pants </a> </div>
-                    <!-- /.accordion-heading -->
-                    <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
-                      <div class="accordion-inner">
-                        <ul>
-                          <li><a href="#">gaming</a></li>
-                          <li><a href="#">office</a></li>
-                          <li><a href="#">kids</a></li>
-                          <li><a href="#">for women</a></li>
-                        </ul>
-                      </div>
-                      <!-- /.accordion-inner --> 
-                    </div>
-                    <!-- /.accordion-body --> 
-                  </div>
-                  <!-- /.accordion-group -->
-                  
-                  <div class="accordion-group">
-                    <div class="accordion-heading"> <a href="#collapseFour" data-toggle="collapse" class="accordion-toggle collapsed"> Bags </a> </div>
-                    <!-- /.accordion-heading -->
-                    <div class="accordion-body collapse" id="collapseFour" style="height: 0px;">
-                      <div class="accordion-inner">
-                        <ul>
-                          <li><a href="#">gaming</a></li>
-                          <li><a href="#">office</a></li>
-                          <li><a href="#">kids</a></li>
-                          <li><a href="#">for women</a></li>
-                        </ul>
-                      </div>
-                      <!-- /.accordion-inner --> 
-                    </div>
-                    <!-- /.accordion-body --> 
-                  </div>
-                  <!-- /.accordion-group -->
-                  
-                  <div class="accordion-group">
-                    <div class="accordion-heading"> <a href="#collapseFive" data-toggle="collapse" class="accordion-toggle collapsed"> Hats </a> </div>
-                    <!-- /.accordion-heading -->
-                    <div class="accordion-body collapse" id="collapseFive" style="height: 0px;">
-                      <div class="accordion-inner">
-                        <ul>
-                          <li><a href="#">gaming</a></li>
-                          <li><a href="#">office</a></li>
-                          <li><a href="#">kids</a></li>
-                          <li><a href="#">for women</a></li>
-                        </ul>
-                      </div>
-                      <!-- /.accordion-inner --> 
-                    </div>
-                    <!-- /.accordion-body --> 
-                  </div>
-                  <!-- /.accordion-group -->
-                  
-                  <div class="accordion-group">
-                    <div class="accordion-heading"> <a href="#collapseSix" data-toggle="collapse" class="accordion-toggle collapsed"> Accessories </a> </div>
-                    <!-- /.accordion-heading -->
-                    <div class="accordion-body collapse" id="collapseSix" style="height: 0px;">
-                      <div class="accordion-inner">
-                        <ul>
-                          <li><a href="#">gaming</a></li>
-                          <li><a href="#">office</a></li>
-                          <li><a href="#">kids</a></li>
-                          <li><a href="#">for women</a></li>
-                        </ul>
-                      </div>
-                      <!-- /.accordion-inner --> 
-                    </div>
-                    <!-- /.accordion-body --> 
-                  </div>
                   <!-- /.accordion-group --> 
                   
                 </div>
@@ -225,60 +146,26 @@ Tag Wish Product
             <!-- /.sidebar-widget --> 
             <!-- ============================================== COMPARE: END ============================================== --> 
             <!-- ============================================== PRODUCT TAGS ============================================== -->
-            <div class="sidebar-widget product-tag wow fadeInUp outer-top-vs">
-              <h3 class="section-title">Product tags</h3>
-              <div class="sidebar-widget-body outer-top-xs">
-                <div class="tag-list"> <a class="item" title="Phone" href="category.html">Phone</a> <a class="item active" title="Vest" href="category.html">Vest</a> <a class="item" title="Smartphone" href="category.html">Smartphone</a> <a class="item" title="Furniture" href="category.html">Furniture</a> <a class="item" title="T-shirt" href="category.html">T-shirt</a> <a class="item" title="Sweatpants" href="category.html">Sweatpants</a> <a class="item" title="Sneaker" href="category.html">Sneaker</a> <a class="item" title="Toys" href="category.html">Toys</a> <a class="item" title="Rose" href="category.html">Rose</a> </div>
-                <!-- /.tag-list --> 
-              </div>
-              <!-- /.sidebar-widget-body --> 
-            </div>
+             @include('frontend.common.product_tags')
             <!-- /.sidebar-widget --> 
           <!----------- Testimonials------------->
-            <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
-              <div id="advertisement" class="advertisement">
-                <div class="item">
-                  <div class="avatar"><img src="assets/images/testimonials/member1.png" alt="Image"></div>
-                  <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                  <div class="clients_author">John Doe <span>Abc Company</span> </div>
-                  <!-- /.container-fluid --> 
-                </div>
-                <!-- /.item -->
-                
-                <div class="item">
-                  <div class="avatar"><img src="assets/images/testimonials/member3.png" alt="Image"></div>
-                  <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                  <div class="clients_author">Stephen Doe <span>Xperia Designs</span> </div>
-                </div>
-                <!-- /.item -->
-                
-                <div class="item">
-                  <div class="avatar"><img src="assets/images/testimonials/member2.png" alt="Image"></div>
-                  <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                  <div class="clients_author">Saraha Smith <span>Datsun &amp; Co</span> </div>
-                  <!-- /.container-fluid --> 
-                </div>
-                <!-- /.item --> 
-                
-              </div>
-              <!-- /.owl-carousel --> 
-            </div>
-            
+         @include('frontend.common.testimonials')
             <!-- ============================================== Testimonials: END ============================================== -->
             
-            <div class="home-banner"> <img src="assets/images/banners/LHS-banner.jpg" alt="Image"> </div>
+            <div class="home-banner"> <img src=" {{asset('frontend/')}}assets/images/banners/LHS-banner.jpg" alt="Image"> </div>
           </div>
           <!-- /.sidebar-filter --> 
         </div>
         <!-- /.sidebar-module-container --> 
       </div>
       <!-- /.sidebar -->
+     
       <div class='col-md-9'> 
         <!-- ========================================== SECTION – HERO ========================================= -->
         
         <div id="category" class="category-carousel hidden-xs">
           <div class="item">
-            <div class="image"> <img src="assets/images/banners/cat-banner-1.jpg" alt="" class="img-responsive"> </div>
+            <div class="image"> <img src=" {{asset('frontend/')}}assets/images/banners/cat-banner-1.jpg" alt="" class="img-responsive"> </div>
             <div class="container-fluid">
               <div class="caption vertical-top text-left">
                 <div class="big-text"> Big Sale </div>
@@ -375,7 +262,7 @@ Tag Wish Product
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p5.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src=" {{asset('frontend/')}}assets/images/products/p5.jpg" alt=""></a> </div>
                           <!-- /.image -->
                           
                           <div class="tag new"><span>new</span></div>
@@ -417,7 +304,7 @@ Tag Wish Product
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p1.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src=" {{asset('frontend/')}}assets/images/products/p1.jpg" alt=""></a> </div>
                           <!-- /.image -->
                           
                           <div class="tag sale"><span>sale</span></div>
@@ -459,7 +346,7 @@ Tag Wish Product
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p6.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src=" {{asset('frontend/')}}assets/images/products/p6.jpg" alt=""></a> </div>
                           <!-- /.image -->
                           
                           <div class="tag hot"><span>hot</span></div>
@@ -501,7 +388,7 @@ Tag Wish Product
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p6.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src=" {{asset('frontend/')}}assets/images/products/p6.jpg" alt=""></a> </div>
                           <!-- /.image -->
                           
                           <div class="tag hot"><span>hot</span></div>
@@ -543,7 +430,7 @@ Tag Wish Product
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p7.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src=" {{asset('frontend/')}}assets/images/products/p7.jpg" alt=""></a> </div>
                           <!-- /.image -->
                           
                           <div class="tag sale"><span>sale</span></div>
@@ -585,7 +472,7 @@ Tag Wish Product
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p8.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src=" {{asset('frontend/')}}assets/images/products/p8.jpg" alt=""></a> </div>
                           <!-- /.image -->
                           
                           <div class="tag new"><span>new</span></div>
@@ -627,7 +514,7 @@ Tag Wish Product
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p9.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src=" {{asset('frontend/')}}assets/images/products/p9.jpg" alt=""></a> </div>
                           <!-- /.image -->
                           
                           <div class="tag new"><span>new</span></div>
@@ -669,7 +556,7 @@ Tag Wish Product
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p10.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src=" {{asset('frontend/')}}assets/images/products/p10.jpg" alt=""></a> </div>
                           <!-- /.image -->
                           
                           <div class="tag sale"><span>sale</span></div>
@@ -711,7 +598,7 @@ Tag Wish Product
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p2.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src=" {{asset('frontend/')}}assets/images/products/p2.jpg" alt=""></a> </div>
                           <!-- /.image -->
                           
                           <div class="tag hot"><span>hot</span></div>
@@ -753,7 +640,7 @@ Tag Wish Product
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p11.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src=" {{asset('frontend/')}}assets/images/products/p11.jpg" alt=""></a> </div>
                           <!-- /.image -->
                           
                           <div class="tag new"><span>new</span></div>
@@ -795,7 +682,7 @@ Tag Wish Product
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p12.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src=" {{asset('frontend/')}}assets/images/products/p12.jpg" alt=""></a> </div>
                           <!-- /.image -->
                           
                           <div class="tag sale"><span>sale</span></div>
@@ -837,7 +724,7 @@ Tag Wish Product
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p14.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src=" {{asset('frontend/')}}assets/images/products/p14.jpg" alt=""></a> </div>
                           <!-- /.image -->
                           
                           <div class="tag hot"><span>hot</span></div>
@@ -890,7 +777,7 @@ Tag Wish Product
                       <div class="row product-list-row">
                         <div class="col col-sm-4 col-lg-4">
                           <div class="product-image">
-                            <div class="image"> <img src="assets/images/products/p3.jpg" alt=""> </div>
+                            <div class="image"> <img src=" {{asset('frontend/')}}assets/images/products/p3.jpg" alt=""> </div>
                           </div>
                           <!-- /.product-image --> 
                         </div>
@@ -937,7 +824,7 @@ Tag Wish Product
                       <div class="row product-list-row">
                         <div class="col col-sm-4 col-lg-4">
                           <div class="product-image">
-                            <div class="image"> <img src="assets/images/products/p4.jpg" alt=""> </div>
+                            <div class="image"> <img src=" {{asset('frontend/')}}assets/images/products/p4.jpg" alt=""> </div>
                           </div>
                           <!-- /.product-image --> 
                         </div>
@@ -984,7 +871,7 @@ Tag Wish Product
                       <div class="row product-list-row">
                         <div class="col col-sm-4 col-lg-4">
                           <div class="product-image">
-                            <div class="image"> <img src="assets/images/products/p5.jpg" alt=""> </div>
+                            <div class="image"> <img src=" {{asset('frontend/')}}assets/images/products/p5.jpg" alt=""> </div>
                           </div>
                           <!-- /.product-image --> 
                         </div>
@@ -1031,7 +918,7 @@ Tag Wish Product
                       <div class="row product-list-row">
                         <div class="col col-sm-4 col-lg-4">
                           <div class="product-image">
-                            <div class="image"> <img src="assets/images/products/p6.jpg" alt=""> </div>
+                            <div class="image"> <img src=" {{asset('frontend/')}}assets/images/products/p6.jpg" alt=""> </div>
                           </div>
                           <!-- /.product-image --> 
                         </div>
@@ -1078,7 +965,7 @@ Tag Wish Product
                       <div class="row product-list-row">
                         <div class="col col-sm-4 col-lg-4">
                           <div class="product-image">
-                            <div class="image"> <img src="assets/images/products/p7.jpg" alt=""> </div>
+                            <div class="image"> <img src=" {{asset('frontend/')}}assets/images/products/p7.jpg" alt=""> </div>
                           </div>
                           <!-- /.product-image --> 
                         </div>
@@ -1125,7 +1012,7 @@ Tag Wish Product
                       <div class="row product-list-row">
                         <div class="col col-sm-4 col-lg-4">
                           <div class="product-image">
-                            <div class="image"> <img src="assets/images/products/p8.jpg" alt=""> </div>
+                            <div class="image"> <img src=" {{asset('frontend/')}}assets/images/products/p8.jpg" alt=""> </div>
                           </div>
                           <!-- /.product-image --> 
                         </div>
@@ -1172,7 +1059,7 @@ Tag Wish Product
                       <div class="row product-list-row">
                         <div class="col col-sm-4 col-lg-4">
                           <div class="product-image">
-                            <div class="image"> <img src="assets/images/products/p9.jpg" alt=""> </div>
+                            <div class="image"> <img src=" {{asset('frontend/')}}assets/images/products/p9.jpg" alt=""> </div>
                           </div>
                           <!-- /.product-image --> 
                         </div>
@@ -1219,7 +1106,7 @@ Tag Wish Product
                       <div class="row product-list-row">
                         <div class="col col-sm-4 col-lg-4">
                           <div class="product-image">
-                            <div class="image"> <img src="assets/images/products/p10.jpg" alt=""> </div>
+                            <div class="image"> <img src=" {{asset('frontend/')}}assets/images/products/p10.jpg" alt=""> </div>
                           </div>
                           <!-- /.product-image --> 
                         </div>
@@ -1266,7 +1153,7 @@ Tag Wish Product
                       <div class="row product-list-row">
                         <div class="col col-sm-4 col-lg-4">
                           <div class="product-image">
-                            <div class="image"> <img src="assets/images/products/p11.jpg" alt=""> </div>
+                            <div class="image"> <img src=" {{asset('frontend/')}}assets/images/products/p11.jpg" alt=""> </div>
                           </div>
                           <!-- /.product-image --> 
                         </div>
@@ -1313,7 +1200,7 @@ Tag Wish Product
                       <div class="row product-list-row">
                         <div class="col col-sm-4 col-lg-4">
                           <div class="product-image">
-                            <div class="image"> <img src="assets/images/products/p12.jpg" alt=""> </div>
+                            <div class="image"> <img src=" {{asset('frontend/')}}assets/images/products/p12.jpg" alt=""> </div>
                           </div>
                           <!-- /.product-image --> 
                         </div>
@@ -1360,7 +1247,7 @@ Tag Wish Product
                       <div class="row product-list-row">
                         <div class="col col-sm-4 col-lg-4">
                           <div class="product-image">
-                            <div class="image"> <img src="assets/images/products/p13.jpg" alt=""> </div>
+                            <div class="image"> <img src=" {{asset('frontend/')}}assets/images/products/p13.jpg" alt=""> </div>
                           </div>
                           <!-- /.product-image --> 
                         </div>
@@ -1407,7 +1294,7 @@ Tag Wish Product
                       <div class="row product-list-row">
                         <div class="col col-sm-4 col-lg-4">
                           <div class="product-image">
-                            <div class="image"> <img src="assets/images/products/p14.jpg" alt=""> </div>
+                            <div class="image"> <img src=" {{asset('frontend/')}}assets/images/products/p14.jpg" alt=""> </div>
                           </div>
                           <!-- /.product-image --> 
                         </div>
@@ -1484,34 +1371,34 @@ Tag Wish Product
     <div id="brands-carousel" class="logo-slider wow fadeInUp">
       <div class="logo-slider-inner">
         <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
-          <div class="item m-t-15"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item m-t-15"> <a href="#" class="image"> <img data-echo=" {{asset('frontend/')}}assets/images/brands/brand1.png" src=" {{asset('frontend/')}}assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item m-t-10"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item m-t-10"> <a href="#" class="image"> <img data-echo=" {{asset('frontend/')}}assets/images/brands/brand2.png" src=" {{asset('frontend/')}}assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand3.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo=" {{asset('frontend/')}}assets/images/brands/brand3.png" src=" {{asset('frontend/')}}assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo=" {{asset('frontend/')}}assets/images/brands/brand4.png" src=" {{asset('frontend/')}}assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo=" {{asset('frontend/')}}assets/images/brands/brand5.png" src=" {{asset('frontend/')}}assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand6.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo=" {{asset('frontend/')}}assets/images/brands/brand6.png" src=" {{asset('frontend/')}}assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo=" {{asset('frontend/')}}assets/images/brands/brand2.png" src=" {{asset('frontend/')}}assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo=" {{asset('frontend/')}}assets/images/brands/brand4.png" src=" {{asset('frontend/')}}assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo=" {{asset('frontend/')}}assets/images/brands/brand1.png" src=" {{asset('frontend/')}}assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo=" {{asset('frontend/')}}assets/images/brands/brand5.png" src=" {{asset('frontend/')}}assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item--> 
         </div>
         <!-- /.owl-carousel #logo-slider --> 
