@@ -538,7 +538,8 @@ Quick Mart
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"><img  src="{{asset($product->product_thumbnail)}}" alt=""></a> </div>
+                          <div class="image"> <a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}">
+                            <img  src="{{asset($product->product_thumbnail)}}" alt=""></a> </div>
                           <!-- /.image -->
                           
 
