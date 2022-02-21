@@ -138,6 +138,10 @@ Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDeta
 
 Route::get('/product/tag/{tag}', [IndexController::class, 'TagWishProduct']);
 
+// Subcategory wise data
+
+Route::get('/subcategory/product/{subcat_id}/{slug}', [IndexController::class, 'SubCatWishProduct']);
+
 
  Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
        $id = Auth::user()->id;
