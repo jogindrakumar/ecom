@@ -241,17 +241,7 @@ Tag Wish Product
             </div>
             <!-- /.col -->
             <div class="col col-sm-6 col-md-4 text-right">
-              <div class="pagination-container">
-                <ul class="list-inline list-unstyled">
-                  <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                  <li><a href="#">1</a></li>
-                  <li class="active"><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                </ul>
-                <!-- /.list-inline --> 
-              </div>
+              
               <!-- /.pagination-container --> </div>
             <!-- /.col --> 
           </div>
@@ -270,7 +260,7 @@ Tag Wish Product
       <div class="product">
         <div class="product-image">
           <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en ) }}">
-            <img  src="{{ asset($product->product_thambnail) }}" alt=""></a> </div>
+            <img  src="{{ asset($product->product_thumbnail) }}" alt=""></a> </div>
           <!-- /.image -->
 
            @php
@@ -298,11 +288,11 @@ Tag Wish Product
 
 
 @if ($product->discount_price == NULL)
-<div class="product-price"> <span class="price"> ${{ $product->selling_price }} </span>   </div>
+<div class="product-price"> <span class="price"> ₹{{ $product->selling_price }} </span>   </div>
 
 @else
 
-<div class="product-price"> <span class="price"> ${{ $product->discount_price }} </span> <span class="price-before-discount">$ {{ $product->selling_price }}</span> </div>
+<div class="product-price"> <span class="price"> ₹{{ $product->discount_price }} </span> <span class="price-before-discount">$ {{ $product->selling_price }}</span> </div>
 @endif
 
 
@@ -374,14 +364,17 @@ Tag Wish Product
           <div class="rating rateit-small"></div>
           
 @if ($product->discount_price == NULL)
-<div class="product-price"> <span class="price"> ${{ $product->selling_price }} </span>   </div>
+<div class="product-price"> <span class="price"> ₹{{ $product->selling_price }} </span>   </div>
 
 @else
 
-<div class="product-price"> <span class="price"> ${{ $product->discount_price }} </span> <span class="price-before-discount">$ {{ $product->selling_price }}</span> </div>
+<div class="product-price"> <span class="price"> ₹{{ $product->discount_price }} </span> <span class="price-before-discount">$ {{ $product->selling_price }}</span> </div>
 @endif
           <!-- /.product-price -->
-          <div class="description m-t-10">Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.</div>
+          <div class="description m-t-10">
+             @if(session()->get('language') == 'hindi') {{ $product->short_descp_hin }} @else {{ $product->short_descp_en }} @endif
+          
+          </div>
           <div class="cart clearfix animate-effect">
             <div class="action">
               <ul class="list-unstyled">
@@ -429,12 +422,7 @@ Tag Wish Product
             <div class="text-right">
               <div class="pagination-container">
                 <ul class="list-inline list-unstyled">
-                  <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                  <li><a href="#">1</a></li>
-                  <li class="active"><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                {{  $products->links()  }}
                 </ul>
                 <!-- /.list-inline --> 
               </div>
