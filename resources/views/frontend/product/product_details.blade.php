@@ -385,49 +385,93 @@
 										</div>
 									</div>
 
-									<div class="col-sm-6">
-										<div class="favorite-button m-t-10">
-											<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" href="#">
-											    <i class="fa fa-heart"></i>
-											</a>
-											<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Add to Compare" href="#">
-											   <i class="fa fa-signal"></i>
-											</a>
-											<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="E-mail" href="#">
-											    <i class="fa fa-envelope"></i>
-											</a>
-										</div>
-									</div>
+				<div class="col-sm-6">
+					<div class="favorite-button m-t-10">
+						<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" href="#">
+							<i class="fa fa-heart"></i>
+						</a>
+						<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Add to Compare" href="#">
+							<i class="fa fa-signal"></i>
+						</a>
+						<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="E-mail" href="#">
+							<i class="fa fa-envelope"></i>
+						</a>
+					</div>
+				</div>
 
-								</div><!-- /.row -->
-							</div><!-- /.price-container -->
+			</div><!-- /.row -->
+ 
 
-							<div class="quantity-container info-container">
-								<div class="row">
-									
-									<div class="col-sm-2">
-										<span class="label">Qty :</span>
-									</div>
-									
-									<div class="col-sm-2">
-										<div class="cart-quantity">
-											<div class="quant-input">
-								                <div class="arrows">
-								                  <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-								                  <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
-								                </div>
-								                <input type="text" value="1">
-							              </div>
-							            </div>
-									</div>
+			{{-- color and size  --}}
 
-									<div class="col-sm-7">
-										<a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
-									</div>
+			<div class="row">
+						
 
-									
-								</div><!-- /.row -->
-							</div><!-- /.quantity-container -->
+				<div class="col-sm-6">
+		<div class="form-group">
+				<label class="info-title control-label">Choose Color <span></span></label>
+				<select class="form-control unicase-form-control selectpicker" style="display: none;">
+					<option selected="" disabled="">--Choose Color--</option>
+					@foreach ($product_color_en as $color)
+						
+					
+					<option>{{$color}}</option>
+				@endforeach
+				</select>
+				
+			</div>
+
+			{{-- end form group --}}
+					
+				</div>
+
+				<div class="col-sm-6">
+				<div class="form-group">
+				<label class="info-title control-label">Choose Size <span>*</span></label>
+				<select class="form-control unicase-form-control selectpicker" style="display: none;">
+					<option selected="" disabled="">--Choose Size --</option>
+						@foreach ($product_size_en as $size)
+					<option>{{$size}}</option>
+				@endforeach
+				</select>
+				
+			</div>
+
+			{{-- end form group --}}
+
+			</div><!-- /.row -->
+			{{-- end color and size  --}}
+
+
+
+		</div><!-- /.price-container -->
+
+		<div class="quantity-container info-container">
+			<div class="row">
+				
+				<div class="col-sm-2">
+					<span class="label">Qty :</span>
+				</div>
+				
+				<div class="col-sm-2">
+					<div class="cart-quantity">
+						<div class="quant-input">
+							<div class="arrows">
+								<div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
+								<div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
+							</div>
+							<input type="text" value="1">
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-7">
+					<a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+				</div>
+
+				
+			</div><!-- /.row -->
+		</div><!-- /.quantity-container -->
 
 							
 
