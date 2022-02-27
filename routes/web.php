@@ -145,6 +145,9 @@ Route::get('/subcategory/product/{subcat_id}/{slug}', [IndexController::class, '
 // Sub Sub CAtegory wise data
 Route::get('/subsubcategory/product/{subsubcat_id}/{slug}', [IndexController::class, 'SubSubCatWishProduct']);
 
+// product View model with ajax
+Route::get('/product/view/model/{id}', [IndexController::class, 'ProductViewAjax']);
+
 
 
  Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
