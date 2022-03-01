@@ -126,22 +126,16 @@
     <div class="col-md-4">
   <div class="form-group">
     <label for="exampleFormControlSelect1">Choose Color</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
+    <select class="form-control" id="exampleFormControlSelect1" name="color">
+      
+ 
     </select>
   </div>  {{-- end form group --}}
-  <div class="form-group">
+  <div class="form-group" id="sizeArea">
     <label for="exampleFormControlSelect1">Choose Size</label>
-    <select class="form-control" id="exampleFormControlSelect1">
+    <select class="form-control" id="exampleFormControlSelect1" name="size">
       <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
+     
     </select>
   </div>  {{-- end form group --}}
   <div class="form-group">
@@ -190,6 +184,29 @@ function productView(id){
             $('#pcategory').text(data.product.category.category_name_en);
             $('#pbrand').text(data.product.brand.brand_name_en);
             $('#pimage').attr('src','/' +data.product.product_thumbnail);
+
+            //color
+
+            $('select[name="color"]').empty();
+            $.each(data.color,function(key,value){
+              $('select[name="color"]').append('<option value=" '+value+' ">'+value+'</option>')
+            })// end color
+
+             //size
+
+            $('select[name="size"]').empty();
+            $.each(data.size,function(key,value){
+              $('select[name="size"]').append('<option value=" '+value+' ">'+value+'</option>')
+
+              if (data.size == "") { // if size is NULL then this div hide 
+                $('#sizeArea').hide();
+              } else {
+                 $('#sizeArea').show();
+                
+              }
+            }) // end size
+
+
         }
     })
 }
