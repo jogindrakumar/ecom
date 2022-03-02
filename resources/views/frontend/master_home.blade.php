@@ -98,7 +98,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><span id="pname"></span></h5>
+        <h5 class="modal-title" id="exampleModalLabel"><strong><span id="pname"></span></strong></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -121,7 +121,11 @@
   <li class="list-group-item">Product Code : <strong id="pcode"></strong></li>
   <li class="list-group-item">Category <strong id="pcategory"></strong></li>
   <li class="list-group-item">Brand: <strong id="pbrand"></strong></li>
-  <li class="list-group-item">Stock</li>
+  <li class="list-group-item">Stock: <span class="badge badge-pill badge-success" id="available" 
+    style="background:green;color:whitesmoke;"></span>
+  <span class="badge badge-pill badge-danger" id="outofstock" 
+    style="background:red;color:whitesmoke;"></span>
+  </li>
 </ul>
 
     </div>{{-- end col-md --}}
@@ -198,6 +202,17 @@ function productView(id){
             } else {
               $('#pprice').text(data.product.discount_price);
               $('#oldprice').text(data.product.selling_price);
+            }// end price product
+
+
+            // stock option start
+
+            if (data.product.product_qty > 0) {
+              $('#available').text('');
+              $('#outofstock').text('');
+              $('#available').text('available');
+            } else {
+               $('#outofstock').text('outofstock');
             }
 
             //color
