@@ -7,7 +7,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
-use App\Http\Controllers\Frontend\CartControllerr;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SliderController;
@@ -148,6 +148,9 @@ Route::get('/subsubcategory/product/{subsubcat_id}/{slug}', [IndexController::cl
 
 // product View model with ajax
 Route::get('/product/view/model/{id}', [IndexController::class, 'ProductViewAjax']);
+
+// product  Add to Cart store data with ajax
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 
 
 
