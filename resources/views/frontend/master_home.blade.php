@@ -294,12 +294,26 @@ function addToCart(){
     }
   })
 }
-
-
-
 // End Add To Cart Product 
 
+</script>
 
+
+<script type="text/javascript">
+
+// Mini Cart
+function miniCart(){
+  $.ajax({
+            type: 'GET',
+            url: '/product/mini/cart',
+            dataType:'json',
+            success:function(response){
+                console.log(response)
+
+
+    }
+  })
+}
 
 
 </script>

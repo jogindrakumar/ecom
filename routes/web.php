@@ -152,6 +152,9 @@ Route::get('/product/view/model/{id}', [IndexController::class, 'ProductViewAjax
 // product  Add to Cart store data with ajax
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 
+//Get data from  Mini cart  ajax
+Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
+
 
 
  Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
