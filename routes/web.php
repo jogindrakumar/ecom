@@ -155,6 +155,10 @@ Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 //Get data from  Mini cart  ajax
 Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
 
+//Get data from  Mini cart and remove 
+
+Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+
 
 
  Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
