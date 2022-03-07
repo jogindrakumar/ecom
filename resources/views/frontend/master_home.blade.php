@@ -385,5 +385,28 @@ $.ajax({
 
 
 </script>
+
+
+{{-- start wishlist  --}}
+
+<script type="text/javascript">
+
+
+function addToWishlist(product_id){
+  $.ajax({
+    type: "POST",
+    dataType: 'json',
+    url: "/add-to-wishlist/"+product_id,
+    success:function(data){
+      
+    }
+  })
+}
+</script>
+
+
+{{-- end wishlist  --}}
+
+
 </body>
 </html>

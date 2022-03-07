@@ -159,6 +159,9 @@ Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
 
 Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 
+// Add to WishList
+Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
+
 
 
  Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
