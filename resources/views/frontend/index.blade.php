@@ -520,7 +520,7 @@ Quick Mart
 
                 
                   <button type="button" class="btn btn-primary icon" type="button" 
-                title="Wishlist" data-toggle="modal"  id="{{$product->id}}" onclick="addToWishlist(this.id)">
+                title="Wishlist" data-toggle="modal"  id="{{$product->id}}" onclick="addToWishList(this.id)">
                     <i class="icon fa fa-heart"></i>  </button>
                 
 
