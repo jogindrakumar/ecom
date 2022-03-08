@@ -433,5 +433,59 @@ function addToWishList(product_id){
 {{-- end wishlist  --}}
 
 
+
+ {{-- Load Wishlist data start --}}
+
+ <script type="text/javascript">
+
+   // Mini Cart
+function wishlist(){
+  $.ajax({
+            type: 'GET',
+            url: '/get-wishlist-product',
+            dataType:'json',
+            success:function(response){
+                var rows = ""
+
+                $.each(response,function(key,value){
+                  rows += `	<tr>
+					<td class="col-md-2"><img src="/${value.product.product_thumbnail}" alt="imga"></td>
+					<td class="col-md-7">
+						<div class="product-name"><a href="#">${value.product.product_name_en}</a></div>
+					
+						<div class="price">
+              ${value.product.discount_price == null
+              ? `${value.product.selling_price}`
+              : 
+              `${value.product.discount_price}  <span>${value.product.selling_price}</span>`
+              }
+						
+						</div>
+					</td>
+					<td class="col-md-2">
+					  <button type="button" class="btn btn-primary icon" type="button" 
+                title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="${value.product.product_id}" 
+                onclick="productView(this.id)">
+                  Add To Cart </button>
+					</td>
+					<td class="col-md-1 close-btn">
+						<a href="#" class=""><i class="fa fa-times"></i></a>
+					</td>
+				</tr>`
+
+                });
+
+                $('#wishlist').html(rows);
+
+
+    }
+  })
+}
+
+wishlist();
+ </script>
+ {{-- Load Wishlist data End --}}
+
+
 </body>
 </html>
