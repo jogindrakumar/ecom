@@ -172,6 +172,9 @@ Route::get('/wishlist/', [WishlistController::class, 'ViewWishlist'])->name('wis
 Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
 
 
+Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
+
+
 
  Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
        $id = Auth::user()->id;
